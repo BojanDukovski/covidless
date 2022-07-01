@@ -22,9 +22,14 @@ public class PostController {
     }
 
     @GetMapping("/")
-    public String index (Model model) {
+    public String index() {
+        return "index";
+    }
+
+    @GetMapping("/forum")
+    public String forum (Model model) {
         List<Post> posts = this.postService.findAll();
         model.addAttribute("posts", posts);
-        return "index";
+        return "forum";
     }
 }

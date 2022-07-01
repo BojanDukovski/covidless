@@ -12,4 +12,5 @@ public class CovidlessApplication {
         SpringApplication.run(CovidlessApplication.class, args);
     }
 
+
 }
