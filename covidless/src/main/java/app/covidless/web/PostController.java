@@ -3,7 +3,6 @@ package app.covidless.web;
 import app.covidless.model.Post;
 import app.covidless.service.AppUserService;
 import app.covidless.service.PostService;
-import org.hibernate.mapping.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +22,7 @@ public class PostController {
 
     @GetMapping("/")
     public String index() {
-        return "index";
+        return "forum";
     }
 
     @GetMapping("/forum")

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,19 +18,27 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="index.html">Почетна</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" href="doctors.html">Доктори</a>
+            <li class="nav-item" sec:authorize="!isFullyAuthenticated()">
+                <a class="navbar-brand" href="/login">Најава</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="forum.html">Форум</a>
+            <li class="nav-item" sec:authorize="!isFullyAuthenticated()">
+                <a class="navbar-brand" href="/register">Регистрација</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/doctors">Доктори</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-success" href="/forum">Форум</a>
+            </li>
+            <li class="navbar-brand" sec:authorize="isFullyAuthenticated()">
+                <a class="text-danger" href="/logout">Одјави се</a>
             </li>
         </ul>
         <span class="mr-auto text-light"><h3>Форум</h3></span>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Клучен збор" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Пребарај</button>
+            <button class="btn btn-success my-2 my-sm-0" type="submit">Пребарај</button>
         </form>
     </div>
 </nav>
@@ -42,158 +50,46 @@
     </div>
 
     <div class="float-right">
-        <a href="add.html" id="add" class="btn btn-success text-light">Додај ставка <img style="height: 50px; width: 50px;" src="img/plus.png"/> </a>
+        <a href="add.html" id="add" class="btn btn-success text-light">Додај ставка <img style="height: 50px; width: 50px;" src="http://www.clipartbest.com/cliparts/9cp/brr/9cpbrrdxi.png"/> </a>
     </div>
 
-    <div class="row mt-5">
+    <!--Za sekoj post-->
+
+    <div th:each="post : ${posts}" class="row mt-5 mb-5">
         <div class="col-1 border-right">
-            <img style="height: 60px; width: 60px;" src="img/doc5.png" alt="">
+            <img style="height: 60px; width: 60px;" src="https://clipartmag.com/images/transparent-smiley-face-10.png" alt="">
         </div>
         <div class="col-11">
-            <h4 class="text-success">Корисник 1</h4>
-            <p>
-                Бидејќи не најдов ваква тема во категоријата корона вирус, а би сакала да размениме искуства на истата, ја отварам темава која за жал во моето окружување е се поактуелна. Бројот на прележани со коронавирус е драстично зголемен изминатиов период, како и видот на пост-ковид компликации и здравствени проблеми кај прележаните.
-                Какви се симптомите кај децата? Како тие го пребродиле вирусот? Дали правеле корона тест, дали добиле некаква терапија, дали се јавиле некакви пост-ковид компликации...?
-                Во контекст на напишаното, дел од интервјуто на д.р Софијанова од Март месец за децата и ковидот, како последно кое го најдов за темава:
-                Ковид-19 се почесто предизвикува здравствени проблеми и кај децата. Иако првично се мислеше дека тие полесно го пребродуваат вирусот, искуството на медициските лица коишто се во првите редови во борбата со Ковид-19, покажува дека вирусот може да предизвика сериозни оштетувања на одредени органи кај најмладите.
-                „Децата реагираат на ковид на најразлични начини. На почетокот сметавме дека вирусот е безопасен за нив, но се повеќе гледаме дека тој може да направи огромна штета на одредени органи во детското тело. Тие немаат можеби симптоми како возрасните - висока температура и кашлица, но кај децата се појавуваат пост-ковид компликации кои можат да бидат многу сериозни“, вели директорката на Клиниката за детски болести во Скопје, д-р Аспазија Софијанова
-                Голем дел од децата се асимптоматски за време на вирусот, но тоа не значи дека Ковид-19 не остава последици врз нивното здравје. Вирусот најчесто удира на стомакот, бубрезите, мозокот и срцето кај децата. Предизвикува нарушувања и проблеми при функционирањето на бубрезите и срцето. „Последиците допрва ќе се откриваат“, вели Софијанова.
-                Софијанова вели дека во светот има случаи на Ковид-19 кај деца, коишто завршиле со фатални последици. Во С. Македонија имало посериозни случаи со компликации предивикани од короноавирусот, но за среќа нема случаи со смртен исход.
-                Многу симптоми на Ковид-19 се слични со симптомите на грип, настинка и други состојби, па затоа е потребен тест за да се потврди дали некој има коронавиус. Симптомите може да се појават 2 до 14 дена по изложеноста на вирусот и може да варираат од многу лесна до тешка болест. Некои кои се заразени или биле заразени немаат никакви симптоми. Најчести симптоми се температура, кашлица и замор. Други симптоми може да вклучат губење здив, болка или притисок во градите, болки во мускулите или телото, главоболка, губење осет за вкус или мирис, конфузија, воспаление на грлото, затнатост или течење на носот, дијареја, гадење и повраќање, болки во стомакот и осип на кожата. Покрај овие симптоми, доенчињата може да имаат тешкотии со цицањето. Децата на секоја возраст може да се разболат од Ковид-19.
-                Поставена е и анкета, доколку сакате да се изјасните по истата.
-                Поради тоа што тематика е актуелна а сепак релативно "нова" мислам дека на многу родители ќе им биде од значење секој споделена информација и искуство.
-            </p>
+            <h4 class="text-success" th:text="${post.user.getUsername()}"></h4>
 
-            <div class="rating ml-5 border border-danger rounded m-4 p-3">
-                <h5>Рејтинг: 5.00</h5>
-                <h5 style="display: inline;">Додај твој рејтинг</h5>
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="1">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="2">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="3">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="4">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="5">
-            </div>
-
-        </div>
-
-
-
-    </div>
-
-    <div class="row mt-5">
-        <div class="col-1 border-right">
-            <img style="height: 60px; width: 60px;" src="img/doc4.png" alt="">
-        </div>
-        <div class="col-11">
-            <h4 class="text-success">Корисник 2</h4>
-            <p>
-                Моето дете имаше Ковид пред една година. Тогаш имаше 4 години. Имаше еден саат гранична темпратура, еден ден затнат нос и два дена растечен нос. И му помина. Првиот ден беше малку помирен од обични и потоа се врати на нормално ниво на активност.
-                Му дававме сируп на Бекутан со Омега3 уште пред да има позитивен тест. Потоа му појачавме витамини со кесичките Имуно на Бекутан и толку.
-                Генерално добро пројде Фала Богу.
-            </p>
-
-            <div class=" rating ml-5 border border-danger rounded m-4 p-3">
-                <h5>Рејтинг: 4.72</h5>
-                <h5 style="display: inline;">Додај твој рејтинг</h5>
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="1">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="2">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="3">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="4">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="5">
-            </div>
-
-        </div>
-    </div>
-
-    <div class="row mt-5">
-        <div class="col-1 border-right">
-            <img style="height: 60px; width: 60px;" src="img/doc1.png" alt="">
-        </div>
-        <div class="col-11">
-            <h4 class="text-success">Корисник 3</h4>
-            <p>
-                Останете дома, освен во случај на итност. Доколку имате можност, работете од дома.
-                Одделете се од останатите во различни простории. Редовно проветрувајте ги просториите.
-                Доколку имате на располагање, користете посебен тоалет/бања. Во спротивно редовно дезинфицирајте го оној кој сите го користат.
-                Избегнувајте заедничко користење предмети за домаќинство како крпи за раце, постелнина, чаши, прибор за јадење.
-                Доколку нарачувате храна/продукти преку достава, друг член на домаќинството да ги превзема, избегнете контакт со доставувачот.
-                Бидете на безбедно растојание со другите помеѓу 1 и 2 метри.
-                Чистете ги површините во домот коишто најчесто ги користите.
-                Следете ги препораките за превенција од здравствените установи.
-            </p>
+            <p th:text="${post.content}"></p>
 
             <div class="ml-5 border border-danger rounded m-4 p-3 rating">
-                <h5>Рејтинг: 4.08</h5>
-                <h5 style="display: inline;">Додај твој рејтинг</h5>
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="1">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="2">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="3">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="4">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="5">
-            </div>
-
-        </div>
-    </div>
-
-    <div class="row mt-5">
-        <div class="col-1 border-right">
-            <img style="height: 60px; width: 60px;" src="img/doc3.png" alt="">
-        </div>
-        <div class="col-11">
-            <h4 class="text-success">Корисник 4</h4>
-            <p>
-                Мијте ги рацете често, користејќи сапун и вода, подолго од 1 минута, внимавајќи да ги опфатите сите делови од дланката и прстите.
-                Избегнувајте близок контакт со болни лица или лица кои се вратиле од патување од земја со висок или среден ризик.
-                Користете средства за дезинфекција или алкохолни марамчиња.
-                При кашлање или кивање покријте ги носот и устата со марамче за еднократна употреба и веднаш потоа фрлете го на безбедно место. Доколку немате марамче, покријте ги носот и устата со рака свиткана во лактот.
-                Следете ги препораките на Министерството за здравство и редовно информирајте се од надлежните институции за најновите вести и насоки.
-            </p>
-
-            <div class="ml-5 border border-danger rounded m-4 p-3 rating">
-                <h5>Рејтинг: 3.21</h5>
-                <h5 style="display: inline;">Додај твој рејтинг</h5>
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="1">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="2">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="3">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="4">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="5">
-            </div>
-
-        </div>
-    </div>
-
-    <div class="row mt-5 mb-5">
-        <div class="col-1 border-right">
-            <img style="height: 60px; width: 60px;" src="img/doc2.png" alt="">
-        </div>
-        <div class="col-11">
-            <h4 class="text-success">Корисник 5</h4>
-            <p>
-                Новиот коронавирус е респираторен вирус кој примарно се пренесува преку контакт со заболено лице, односно преку неговите респираторни секрети кои се распрскуваат во вид на ситни капки кога заразениот кашла и кива, преку плунка или течење од носот.
-            </p>
-
-            <div class="ml-5 border border-danger rounded m-4 p-3 rating">
-                <h5>Рејтинг: 2.11</h5>
+                <h5 th:text="${post.rating}"></h5>
                 <h6 style="display: inline;">Додај твој рејтинг</h6>
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="1">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="2">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="3">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="4">
-                <img src="img/rating.png" style="height: 30px; width: 40px; display: inline;" alt="5">
+                <img height="100px" width="100px" src="https://pngimage.net/wp-content/uploads/2018/05/cricle-png-4.png" style="height: 30px; width: 40px; display: inline;" alt="1">
+                <img height="100px" width="100px" src="https://pngimage.net/wp-content/uploads/2018/05/cricle-png-4.png" style="height: 30px; width: 40px; display: inline;" alt="2">
+                <img height="100px" width="100px" src="https://pngimage.net/wp-content/uploads/2018/05/cricle-png-4.png" style="height: 30px; width: 40px; display: inline;" alt="3">
+                <img height="100px" width="100px" src="https://pngimage.net/wp-content/uploads/2018/05/cricle-png-4.png" style="height: 30px; width: 40px; display: inline;" alt="4">
+                <img height="100px" width="100px" src="https://pngimage.net/wp-content/uploads/2018/05/cricle-png-4.png" style="height: 30px; width: 40px; display: inline;" alt="5">
             </div>
 
         </div>
     </div>
+
+    <!--Za sekoj post-->
 </div>
 
 </body>
 <script>
     $(function() {
         $(".rating").find("img").hover(function() {
-            $(this).attr("src", "img/rating1.png")
+            $(this).attr("src", "https://www.publicdomainpictures.net/pictures/310000/velka/yellow-circle.png")
+            $(this).attr("height", "100px")
+            $(this).attr("width", "100px")
             $(this).parent().append("<p style='display:inline;'class='ml-5'>"+ $(this).attr("alt") +"</p>")
         }, function() {
-            $(this).attr("src", "img/rating.png")
+            $(this).attr("src", "https://pngimage.net/wp-content/uploads/2018/05/cricle-png-4.png")
             $(this).parent().find("p").remove();
         });
 

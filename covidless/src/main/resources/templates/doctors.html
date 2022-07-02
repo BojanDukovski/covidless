@@ -17,19 +17,27 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="index.html">Почетна</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-                <a class="nav-link active" href="doctors.html">Доктори</a>
+            <li class="nav-item" sec:authorize="!isFullyAuthenticated()">
+                <a class="navbar-brand" href="/login">Најава</a>
+            </li>
+            <li class="nav-item" sec:authorize="!isFullyAuthenticated()">
+                <a class="navbar-brand" href="/register">Регистрација</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="forum.html">Форум</a>
+                <a class="btn btn-outline-success" href="/doctors">Доктори</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/forum">Форум</a>
+            </li>
+            <li class="navbar-brand" sec:authorize="isFullyAuthenticated()">
+                <a class="text-danger" href="/logout">Одјави се</a>
             </li>
         </ul>
-        <span class="mr-auto text-light"><h3>Доктори</h3></span>
+        <span class="mr-auto text-light"><h3>Форум</h3></span>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Клучен збор" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Пребарај</button>
+            <button class="btn btn-success my-2 my-sm-0" type="submit">Пребарај</button>
         </form>
     </div>
 </nav>
