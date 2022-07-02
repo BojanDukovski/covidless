@@ -2,6 +2,7 @@ package app.covidless.service.impl;
 
 import app.covidless.model.AppUser;
 import app.covidless.model.Post;
+import app.covidless.model.Role;
 import app.covidless.repository.AppUserRepository;
 import app.covidless.repository.PostRepository;
 import app.covidless.service.PostService;
@@ -32,7 +33,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post add(String keywords, String content, Double rating, AppUser user) {
+    public Post save(String keywords, String content, Double rating, AppUser user) {
         AppUser appUser = this.appUserRepository.findById(user.getId()).orElse(null);
         Post post = new Post(keywords, content, rating, appUser);
         return this.postRepository.save(post);
@@ -41,5 +42,10 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post changeRating(Long id, Double rating) { //mathematical implement later!!!
         return null;
+    }
+
+    @Override
+    public List<Post> findAllByUserRole(Role role) {
+        return this.postRepository.findAllByUserRole(role);
     }
 }

@@ -1,6 +1,7 @@
 package app.covidless.web;
 
 import app.covidless.model.Post;
+import app.covidless.model.Role;
 import app.covidless.service.AppUserService;
 import app.covidless.service.PostService;
 import org.springframework.stereotype.Controller;
@@ -21,13 +22,14 @@ public class PostController {
     }
 
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("posts", this.postService.findAllByUserRole(Role.USER));
         return "forum";
     }
 
     @GetMapping("/forum")
     public String forum (Model model) {
-        List<Post> posts = this.postService.findAll();
+        List<Post> posts = this.postService.findAllByUserRole(Role.USER);
         model.addAttribute("posts", posts);
         return "forum";
     }

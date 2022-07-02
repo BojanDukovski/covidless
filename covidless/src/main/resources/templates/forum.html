@@ -26,16 +26,15 @@
                 <a class="navbar-brand" href="/register">Регистрација</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/doctors">Доктори</a>
+                <a class="nav-link" href="/doctors">Докторски препораки</a>
             </li>
             <li class="nav-item">
                 <a class="btn btn-outline-success" href="/forum">Форум</a>
             </li>
-            <li class="navbar-brand" sec:authorize="isFullyAuthenticated()">
-                <a class="text-danger" href="/logout">Одјави се</a>
-            </li>
         </ul>
-        <span class="mr-auto text-light"><h3>Форум</h3></span>
+        <div class="navbar-brand" sec:authorize="isFullyAuthenticated()">
+            <a class="text-danger" href="/logout">Одјави се</a>
+        </div>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Клучен збор" aria-label="Search">
             <button class="btn btn-success my-2 my-sm-0" type="submit">Пребарај</button>
@@ -45,12 +44,8 @@
 
 <div class="container">
 
-    <div class="row mt-5 border-bottom justify-content-center">
-        <h4 class="text-secondary">Кориснички искуства</h4>
-    </div>
-
-    <div class="float-right">
-        <a href="add.html" id="add" class="btn btn-success text-light">Додај ставка <img style="height: 50px; width: 50px;" src="http://www.clipartbest.com/cliparts/9cp/brr/9cpbrrdxi.png"/> </a>
+    <div sec:authorize="isFullyAuthenticated()" class="float-right">
+        <a href="/addPost" id="add" class="btn btn-success text-light">Додај ставка <img style="height: 50px; width: 50px;" src="http://www.clipartbest.com/cliparts/9cp/brr/9cpbrrdxi.png"/> </a>
     </div>
 
     <!--Za sekoj post-->

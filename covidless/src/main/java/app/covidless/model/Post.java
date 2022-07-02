@@ -29,4 +29,12 @@ public class Post {
         this.user = user;
     }
 
+    public Post(Long id, String keywords, String content, Double rating, AppUser user){
+        this.id = id;
+        this.keywords = keywords;
+        this.content = content;
+        this.rating = rating;
+        this.user = user;
+    }
+
 }

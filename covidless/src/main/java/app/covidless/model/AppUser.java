@@ -62,6 +62,18 @@ public class AppUser implements UserDetails {
         this.posts = null;
     }
 
+    public AppUser(Long id, String username, String password, String name, String surname, String biography, String phoneNumber, Role role, List<Post> posts) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.biography = biography;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.posts = posts;
+    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
