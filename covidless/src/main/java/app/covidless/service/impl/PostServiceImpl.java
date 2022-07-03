@@ -53,4 +53,14 @@ public class PostServiceImpl implements PostService {
     public List<Post> findAllByKeywordsContaining(String keyword) {
         return this.postRepository.findAllByKeywordsContaining(keyword);
     }
+
+    @Override
+    public Post findById(Long postId) {
+        return this.postRepository.findById(postId).orElse(null);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        this.postRepository.deleteById(id);
+    }
 }

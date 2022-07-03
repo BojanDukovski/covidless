@@ -18,4 +18,8 @@ public interface PostService {
     List<Post> findAllByUserRole(Role role);
 
     List<Post> findAllByKeywordsContaining(String keyword);
+
+    Post findById(Long postId);
+
+    void deleteById(Long id);
 }

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0892a5da-a9aa-4c4c-8950-d1d2470c1725" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/covidless/src/main/java/app/covidless/web/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/covidless/src/main/java/app/covidless/web/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/covidless/src/main/resources/templates/forum.html" beforeDir="false" afterPath="$PROJECT_DIR$/covidless/src/main/resources/templates/forum.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +42,7 @@
       <workItem from="1656690222084" duration="152000" />
       <workItem from="1656690380183" duration="105000" />
       <workItem from="1656690493443" duration="11000" />
+      <workItem from="1656846526743" duration="42000" />
     </task>
     <servers />
   </component>

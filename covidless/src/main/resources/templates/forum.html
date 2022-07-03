@@ -67,13 +67,16 @@
             <p th:text="${post.content}"></p>
 
             <div class="ml-5 border border-danger rounded m-4 p-3 rating">
+                Рејтинг:
                 <h5 th:text="${post.rating}"></h5>
-                <h6 style="display: inline;">Додај твој рејтинг</h6>
-                <img height="100px" width="100px" src="https://pngimage.net/wp-content/uploads/2018/05/cricle-png-4.png" style="height: 30px; width: 40px; display: inline;" alt="1">
-                <img height="100px" width="100px" src="https://pngimage.net/wp-content/uploads/2018/05/cricle-png-4.png" style="height: 30px; width: 40px; display: inline;" alt="2">
-                <img height="100px" width="100px" src="https://pngimage.net/wp-content/uploads/2018/05/cricle-png-4.png" style="height: 30px; width: 40px; display: inline;" alt="3">
-                <img height="100px" width="100px" src="https://pngimage.net/wp-content/uploads/2018/05/cricle-png-4.png" style="height: 30px; width: 40px; display: inline;" alt="4">
-                <img height="100px" width="100px" src="https://pngimage.net/wp-content/uploads/2018/05/cricle-png-4.png" style="height: 30px; width: 40px; display: inline;" alt="5">
+                <div sec:authorize="isFullyAuthenticated()">
+                    <h6 style="display: inline;">Додај твој рејтинг</h6>
+                    <img th:postId="${post.id}" height="100px" width="80px" src="https://pngimage.net/wp-content/uploads/2018/05/cricle-png-4.png" style="height: 30px; width: 40px; display: inline;" alt="-2">
+                    <img th:postId="${post.id}" height="100px" width="80px" src="https://pngimage.net/wp-content/uploads/2018/05/cricle-png-4.png" style="height: 30px; width: 40px; display: inline;" alt="-1">
+                    <img th:postId="${post.id}" height="100px" width="80px" src="https://pngimage.net/wp-content/uploads/2018/05/cricle-png-4.png" style="height: 30px; width: 40px; display: inline;" alt="0">
+                    <img th:postId="${post.id}" height="100px" width="80px" src="https://pngimage.net/wp-content/uploads/2018/05/cricle-png-4.png" style="height: 30px; width: 40px; display: inline;" alt="1">
+                    <img th:postId="${post.id}" height="100px" width="80px" src="https://pngimage.net/wp-content/uploads/2018/05/cricle-png-4.png" style="height: 30px; width: 40px; display: inline;" alt="2">
+                </div>
             </div>
 
         </div>
@@ -88,13 +91,37 @@
         $(".rating").find("img").hover(function() {
             $(this).attr("src", "https://www.publicdomainpictures.net/pictures/310000/velka/yellow-circle.png")
             $(this).attr("height", "100px")
-            $(this).attr("width", "100px")
+            $(this).attr("width", "80px")
             $(this).parent().append("<p style='display:inline;'class='ml-5'>"+ $(this).attr("alt") +"</p>")
         }, function() {
             $(this).attr("src", "https://pngimage.net/wp-content/uploads/2018/05/cricle-png-4.png")
             $(this).parent().find("p").remove();
         });
 
-    })
+        $(".rating").find("img").click(function() {
+            ajaxCall($(this));
+        });
+
+        function ajaxCall(objectThis) {
+            var postId = objectThis.attr("postId");
+            var chosenRating = objectThis.attr("alt")
+
+
+            var xhttp = new XMLHttpRequest();
+
+            var url = "http://localhost:8080/rating?postId=" + postId + "&chosenRating=" + chosenRating;
+
+            console.log(url);
+
+            xhttp.open("POST", url, true)
+
+            xhttp.onreadystatechange = function() {
+                //alert("Thanks for the rating, refresh the page to see results.")
+            }
+            xhttp.send();
+        }
+
+    });
+
 </script>
 </html>
