@@ -29,14 +29,24 @@ public class AppUserServiceImpl implements AppUserService {
     }
 
     @Override
-    public AppUser register(String username, String password, String repeatPassword, String name, String surname, Role role) {
+    public AppUser register(String username, String password, String repeatPassword, String name, String surname, String biography, String contact, Role role) {
         if (username==null || username.isEmpty()  || password==null || password.isEmpty())
             throw new InvalidUsernameOrPasswordException();
         if (!password.equals(repeatPassword))
             throw new PasswordsDoNotMatchException();
         if(this.userRepository.findByUsername(username).isPresent())
             throw new UsernameAlreadyExistsException(username);
-        AppUser user = new AppUser(username,passwordEncoder.encode(password),name,surname, role);
+        AppUser user = new AppUser(username,passwordEncoder.encode(password),name,surname, biography, contact, role);
         return userRepository.save(user);
+    }
+
+    @Override
+    public AppUser findByUsername(String username) {
+        return this.userRepository.findByUsername(username).orElse(null);
+    }
+
+    @Override
+    public AppUser findById(Long id) {
+        return this.userRepository.findById(id).orElse(null);
     }
 }

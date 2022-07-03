@@ -39,24 +39,32 @@ public class DataInitializer {
                                      admin.getPassword(),
                                      admin.getName(),
                                      admin.getSurname(),
+                                     admin.getBiography(),
+                                     admin.getPhoneNumber(),
                                      admin.getRole());
         this.appUserService.register(user1.getUsername(),
                                      user1.getPassword(),
                                      user1.getPassword(),
                                      user1.getName(),
                                      user1.getSurname(),
+                user1.getBiography(),
+                user1.getPhoneNumber(),
                                      user1.getRole());
         this.appUserService.register(user2.getUsername(),
                                      user2.getPassword(),
                                      user2.getPassword(),
                                      user2.getName(),
                                      user2.getSurname(),
+                user2.getBiography(),
+                user2.getPhoneNumber(),
                                      user2.getRole());
         this.appUserService.register(user3.getUsername(),
                                      user3.getPassword(),
                                      user3.getPassword(),
                                      user3.getName(),
                                      user3.getSurname(),
+                user3.getBiography(),
+                user3.getPhoneNumber(),
                                      user3.getRole());
 
 

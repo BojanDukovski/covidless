@@ -19,12 +19,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item" sec:authorize="!isFullyAuthenticated()">
-                <a class="navbar-brand" href="/login">Најава</a>
-            </li>
-            <li class="nav-item" sec:authorize="!isFullyAuthenticated()">
-                <a class="navbar-brand" href="/register">Регистрација</a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/doctors">Докторски препораки</a>
             </li>
@@ -32,17 +26,30 @@
                 <a class="btn btn-outline-success" href="/forum">Форум</a>
             </li>
         </ul>
+        <div style="margin-right: 30%;" sec:authorize="isFullyAuthenticated()">
+            <a href="/addPost"><img height="50" width="50" src="https://pngimg.com/uploads/plus/plus_PNG26.png"></a>
+        </div>
+        <div class="nav-item" sec:authorize="!isFullyAuthenticated()">
+            <a class="navbar-brand" href="/login">Најава</a>
+        </div>
+        <div class="nav-item" sec:authorize="!isFullyAuthenticated()">
+            <a class="navbar-brand" href="/register">Регистрација</a>
+        </div>
         <div class="navbar-brand" sec:authorize="isFullyAuthenticated()">
             <a class="text-danger" href="/logout">Одјави се</a>
         </div>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Клучен збор" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" method="post" action="/searchPosts">
+            <input name="keyword" class="form-control mr-sm-2" type="search" placeholder="Клучен збор" aria-label="Search">
             <button class="btn btn-success my-2 my-sm-0" type="submit">Пребарај</button>
         </form>
     </div>
 </nav>
 
 <div class="container">
+
+    <div class="row mt-5 border-bottom justify-content-center">
+        <h4 class="text-secondary">Форум</h4>
+    </div>
 
     <div sec:authorize="isFullyAuthenticated()" class="float-right">
         <a href="/addPost" id="add" class="btn btn-success text-light">Додај ставка <img style="height: 50px; width: 50px;" src="http://www.clipartbest.com/cliparts/9cp/brr/9cpbrrdxi.png"/> </a>

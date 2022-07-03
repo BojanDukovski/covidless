@@ -17,4 +17,5 @@ public interface PostService {
 
     List<Post> findAllByUserRole(Role role);
 
+    List<Post> findAllByKeywordsContaining(String keyword);
 }

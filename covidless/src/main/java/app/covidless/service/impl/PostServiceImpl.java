@@ -48,4 +48,9 @@ public class PostServiceImpl implements PostService {
     public List<Post> findAllByUserRole(Role role) {
         return this.postRepository.findAllByUserRole(role);
     }
+
+    @Override
+    public List<Post> findAllByKeywordsContaining(String keyword) {
+        return this.postRepository.findAllByKeywordsContaining(keyword);
+    }
 }
