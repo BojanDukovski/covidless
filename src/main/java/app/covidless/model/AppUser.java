@@ -23,6 +23,7 @@ public class AppUser implements UserDetails {
 
     private String surname;
 
+    @Column(length = 50000)
     private String biography;
 
     private String phoneNumber;

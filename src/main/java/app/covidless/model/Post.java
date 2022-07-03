@@ -13,6 +13,7 @@ public class Post {
 
     private String keywords;
 
+    @Column(length = 50000)
     private String content;
 
     private Double rating;
