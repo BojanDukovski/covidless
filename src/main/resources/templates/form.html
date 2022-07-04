@@ -44,9 +44,15 @@
     </div>
 </nav>
 
+<div class="row" style="margin-left: 12%; margin-top: 2%;"><a class="btn btn-outline-danger" href="/forum">Назад</a></div>
+
 <div class="container">
 
-    <form class="mt-5" method="post" action="/savePost">
+    <div class="row border-bottom justify-content-center">
+        <h4 class="text-secondary">Додај ставка</h4>
+    </div>
+
+    <form class="mt-1" method="post" action="/savePost">
         <div class="mb-3">
             <label for="content" class="form-label">Содржина</label>
             <textarea id="content" name="content" class="form-control" rows="7"></textarea>
@@ -61,7 +67,7 @@
 
         <br><hr><br>
 
-        <div class="row mb-3"><button class="btn btn-primary" type="submit">Објави</button></div>
+        <div class="row mb-3"><button class="btn btn-success" type="submit">Објави</button></div>
         <div class="row mb-3"><a class="btn btn-danger" href="/forum">Откажи се</a></div>
     </form>
 
